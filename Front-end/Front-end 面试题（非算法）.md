@@ -93,11 +93,11 @@ HTML5 有更大的技术集，允许构建更多样化和更强大的网站和�
 1. **content-box（默认值）：**元素的 width = content + padding + border；
 
     ```css
-    .test1{
-    	box-sizing:content-box;
-    	width:200px;
-    	padding:10px;
-    	border:15px solid #eee;
+    .test {
+      box-sizing:content-box;
+      width:200px;
+      padding:10px;
+      border:15px solid #eee;
     }
     ```
 
@@ -106,11 +106,11 @@ HTML5 有更大的技术集，允许构建更多样化和更强大的网站和�
 2. **border-box：**元素的 width = width（相当于缩小 content 的宽度）
 
     ```css
-    .test1{
-    	box-sizing:border-box;
-    	width:200px;
-    	padding:10px;
-    	border:15px solid #eee;
+    .test {
+      box-sizing:border-box;
+      width:200px;
+      padding:10px;
+      border:15px solid #eee;
     }
     ```
 
@@ -129,78 +129,87 @@ HTML5 有更大的技术集，允许构建更多样化和更强大的网站和�
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="loaders.css" type="text/css">
-    <style>
-        #container {
-          margin-left:30px;
-          font-size: 12px;
-          color: #c0c0c0;
-          display: flex;
-          flex-wrap: wrap;
-          width: 700px;
-          background-color: #17607D;
-          padding-top:20px;
-        }
-        .vbox{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width:140px;
-          height:140px;
-        }
-        .vbox > div{
-          margin-top: 30px;
-        }
-        // 定义动画
-        @keyframes rotate {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            50% {
-                -webkit-transform: rotate(180deg);
-                transform: rotate(180deg);
-            }
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-		}
-        .ball-clip-rotate > div {
-            background-color: #fff;
-            width: 15px;
-            height: 15px;
-            border-radius: 100%;
-            margin: 2px;
-            -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-            border: 2px solid #fff;
-            border-bottom-color: transparent;
-            border-right-color: transparent;
-            border-left-color: transparent;
-            height: 26px;
-            width: 26px;
-            background: transparent !important;
-            display: inline-block;
-            -webkit-animation: rotate 0.75s 0s linear infinite;
-            animation: rotate 0.75s 0s linear infinite;
-        }
-      </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="loaders.css" type="text/css">
+  <style>
+    #container {
+      margin-left: 30px;
+      font-size: 12px;
+      color: #c0c0c0;
+      display: flex;
+      flex-wrap: wrap;
+      width: 700px;
+      background-color: #17607D;
+      padding-top: 20px;
+    }
+
+    .vbox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 140px;
+      height: 140px;
+    }
+
+    .vbox>div {
+      margin-top: 30px;
+    }
+
+    /* 定义动画 */
+    @keyframes rotate {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    .ball-clip-rotate>div {
+      background-color: #fff;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      margin: 2px;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      border: 2px solid #fff;
+      border-bottom-color: transparent;
+      border-right-color: transparent;
+      border-left-color: transparent;
+      height: 26px;
+      width: 26px;
+      background: transparent !important;
+      display: inline-block;
+      -webkit-animation: rotate 0.75s 0s linear infinite;
+      animation: rotate 0.75s 0s linear infinite;
+    }
+  </style>
 </head>
+
 <body>
-    <div id="container">
-        <div class="vbox">
-            ball-clip-rotate
-            <div class="ball-clip-rotate">
-            	<div></div>
-            </div>
-        </div>
+  <div id="container">
+    <div class="vbox">
+      ball-clip-rotate
+      <div class="ball-clip-rotate">
+        <div></div>
+      </div>
     </div>
+  </div>
 </body>
+
 </html>
 ```
 
@@ -239,157 +248,175 @@ HTML5 有更大的技术集，允许构建更多样化和更强大的网站和�
     1. 父盒子相对定位，子盒子绝对定位移动上左各 50%，然后再反向移动自身一半的宽高（需要知道子盒子的宽高）；
 
         ```html
-         <!DOCTYPE html>
-         <html lang="en">
-         <head>
-             <meta charset="UTF-8">
-             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-             <title>Document</title>
-             <style>
-                .container {
-                    position: relative;
-                    width: 500px;
-                    height: 500px;
-                    background-color: pink;
-                }
-                .box {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    margin-top: -50px;
-                    margin-left: -50px;
-                    width: 100px;
-                    height: 100px;
-                    background-color: lightblue;
-                }
-             </style>
-         </head>
-         <body>
-            <div class="container">
-                <div class="box"></div>
-              </div>
-         </body>
-         </html>
+        <!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+          <style>
+            .container {
+              position: relative;
+              width: 500px;
+              height: 500px;
+              background-color: pink;
+            }
+        
+            .box {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              margin-top: -50px;
+              margin-left: -50px;
+              width: 100px;
+              height: 100px;
+              background-color: lightblue;
+            }
+          </style>
+        </head>
+        
+        <body>
+          <div class="container">
+            <div class="box"></div>
+          </div>
+        </body>
+        
+        </html>
         ```
 
     2. 父盒子相对定位，子盒子绝对定位移动上左各 50%，然后再反向移动自身一半的宽高（不需要知道子盒子的宽高）
 
         ```html
-         <!DOCTYPE html>
-         <html lang="en">
-         <head>
-             <meta charset="UTF-8">
-             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-             <title>Document</title>
-             <style>
-                .container {
-                    position: relative;
-                    width: 500px;
-                    height: 500px;
-                    background-color: pink;
-                }
-                .box {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    width: 100px;
-                    height: 100px;
-                    background-color: lightblue;
-                }
-             </style>
-         </head>
-         <body>
-            <div class="container">
-                <div class="box"></div>
-              </div>
-         </body>
-         </html>
+        <!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+          <style>
+            .container {
+              position: relative;
+              width: 500px;
+              height: 500px;
+              background-color: pink;
+            }
+        
+            .box {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 100px;
+              height: 100px;
+              background-color: lightblue;
+            }
+          </style>
+        </head>
+        
+        <body>
+          <div class="container">
+            <div class="box"></div>
+          </div>
+        </body>
+        
+        </html>
         ```
 
-    3. 父盒子相对定位，子盒子绝对定位，但不移动，给子盒子 margin: auto;
+    3. 父盒子相对定位，子盒子绝对定位，但不移动（四个方位一定要为0），给子盒子 margin: auto;
 
         ```html
-         <!DOCTYPE html>
-         <html lang="en">
-         <head>
-             <meta charset="UTF-8">
-             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-             <title>Document</title>
-             <style>
-                .container {
-                    position: relative;
-                    width: 500px;
-                    height: 500px;
-                    background-color: pink;
-                }
-                .box {
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    width: 100px;
-                    height: 100px;
-                    background-color: lightblue;
-                }
-             </style>
-         </head>
-         <body>
-            <div class="container">
-                <div class="box"></div>
-              </div>
-         </body>
-         </html>
+        <!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+          <style>
+            .container {
+              position: relative;
+              width: 500px;
+              height: 500px;
+              background-color: pink;
+            }
+        
+            .box {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              margin: auto;
+              width: 100px;
+              height: 100px;
+              background-color: lightblue;
+            }
+          </style>
+        </head>
+        
+        <body>
+          <div class="container">
+            <div class="box"></div>
+          </div>
+        </body>
+        
+        </html>
         ```
 
 - display：flex 父盒子用 flex 布局，设置主轴和侧轴元素 center
 
     ```html
-     <!DOCTYPE html>
-     <html lang="en">
-     <head>
-         <meta charset="UTF-8">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <title>Document</title>
-         <style>
-            .container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 500px;
-                height: 500px;
-                background-color: pink;
-            }
-            .box {
-                width: 100px;
-                height: 100px;
-                background-color: lightblue;
-            }
-         </style>
-     </head>
-     <body>
-        <div class="container">
-            <div class="box"></div>
-          </div>
-     </body>
-     </html>
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+        .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 500px;
+          height: 500px;
+          background-color: pink;
+        }
+    
+        .box {
+          width: 100px;
+          height: 100px;
+          background-color: lightblue;
+        }
+      </style>
+    </head>
+    
+    <body>
+      <div class="container">
+        <div class="box"></div>
+      </div>
+    </body>
+    
+    </html>
     ```
 
 - js 本质上也是用定位，让子盒子偏移（父盒子宽度 - 子盒子宽度）/ 2 的距离
 
     ```javascript
-    let container = document.querySelector('.container'),
+    <script>
+      let container = document.querySelector('.container'),
         box = document.querySelector('.box'),
         conW = container.clientWidth,
         conH = container.clientHeight,
         boxW = box.clientWidth,
         boxH = box.clientHeight
-    container.style.position = 'relative'
-    box.style.position = 'absolute'
-    box.style.left = (conW - boxW) / 2 + 'px'
-    box.style.top = (conH - boxH) / 2 + 'px'
+      container.style.position = 'relative'
+      box.style.position = 'absolute'
+      box.style.left = (conW - boxW) / 2 + 'px'
+      box.style.top = (conH - boxH) / 2 + 'px'
+    </script>
     ```
 
 
@@ -414,6 +441,7 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -424,12 +452,14 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
       height: 200px;
       background-color: pink;
     }
+
     .boxLeft {
       float: left;
       width: 100px;
       height: 150px;
       background-color: lightblue;
     }
+
     .boxright {
       /* 触发 BFC */
       overflow: auto;
@@ -439,12 +469,14 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="boxLeft">1</div>
     <div class="boxright">2</div>
   </div>
 </body>
+
 </html>
 ```
 
@@ -474,15 +506,15 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
 
     ```css
     .clearfix:after {
-        content: "";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
+      content: "";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
     }   
     
     .clearfix {		/* IE6、7 专有 */
-        *zoom: 1;
+      *zoom: 1;
     }
     ```
 
@@ -519,65 +551,70 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
     ```html
     <!DOCTYPE html>
     <html lang="en">
+    
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>圣杯布局</title>
-        <style>
-            .header {
-    			width: 100%;
-    			height: 100px;
-    			background: lightblue;
-    		}
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>圣杯布局</title>
+      <style>
+        .header {
+          width: 100%;
+          height: 100px;
+          background: lightblue;
+        }
     
-    		.content {
-                /* 触发 BFC */
-    			overflow: hidden;
-    			padding: 0 200px;
-    		}
+        .content {
+          /* 触发 BFC */
+          overflow: hidden;
+          padding: 0 200px;
+        }
     
-    		.footer {
-    			width: 100%;
-    			height: 100px;
-    			background: lightblue;
-    		}
+        .footer {
+          width: 100%;
+          height: 100px;
+          background: lightblue;
+        }
     
-    		.middle {
-    			float: left;
-    			/* position: relative; */
-    			width: 100%;
-    			height: 500px;
-    			background: pink;
-    		}
-    		.left {
-    			float: left;
-    			position: relative;
-    			left: -200px;
-    			width: 200px;
-    			height: 500px;
-    			margin-left: -100%;
-    			background: yellow;
-    		}
-    		.right {
-    			float: left;
-    			position: relative;
-    			right: -200px;
-    			width: 200px;
-    			height: 500px;
-    			margin-left: -200px;
-    			background: green;
-    		}
-        </style>
+        .middle {
+          float: left;
+          /* position: relative; */
+          width: 100%;
+          height: 500px;
+          background: pink;
+        }
+    
+        .left {
+          float: left;
+          position: relative;
+          left: -200px;
+          width: 200px;
+          height: 500px;
+          margin-left: -100%;
+          background: yellow;
+        }
+    
+        .right {
+          float: left;
+          position: relative;
+          right: -200px;
+          width: 200px;
+          height: 500px;
+          margin-left: -200px;
+          background: green;
+        }
+      </style>
     </head>
+    
     <body>
-        <div class="header">头头</div>
-        <div class="content">
-    		<div class="middle">123</div>
-    		<div class="left">456</div>
-    		<div class="right">789</div>
-    	</div>
-    	<div class="footer">尾尾</div>
+      <div class="header">头头</div>
+      <div class="content">
+        <div class="middle">123</div>
+        <div class="left">456</div>
+        <div class="right">789</div>
+      </div>
+      <div class="footer">尾尾</div>
     </body>
+    
     </html>
     ```
 
@@ -586,191 +623,205 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
     ```html
     <!DOCTYPE html>
     <html lang="en">
+    
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>双飞翼布局</title>
-        <style>
-            .header {
-    			width: 100%;
-    			height: 100px;
-    			background: lightblue;
-    		}
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>双飞翼布局</title>
+      <style>
+        .header {
+          width: 100%;
+          height: 100px;
+          background: lightblue;
+        }
     
-    		.content {
-                /* 触发 BFC */
-    			overflow: hidden;
-    		}
+        .content {
+          /* 触发 BFC */
+          overflow: hidden;
+        }
     
-    		.footer {
-    			width: 100%;
-    			height: 100px;
-    			background: lightblue;
-    		}
+        .footer {
+          width: 100%;
+          height: 100px;
+          background: lightblue;
+        }
     
-    		.middle {
-    			float: left;
-    			width: 100%;
-                /* padding: 0 200px; */
-    		}
-            .inner-middle {
-    			/* width: auto; */
-    			height: 500px;
-                margin: 0 200px;
-    			background: pink;
-    		}
-            
-    		.left {
-    			float: left;
-    			width: 200px;
-    			height: 500px;
-    			margin-left: -100%;
-    			background: yellow;
-    		}
-    		.right {
-    			float: left;
-    			width: 200px;
-    			height: 500px;
-    			margin-left: -200px;
-    			background: green;
-    		}
-        </style>
+        .middle {
+          float: left;
+          width: 100%;
+          /* padding: 0 200px; */
+        }
+    
+        .inner-middle {
+          /* width: auto; */
+          height: 500px;
+          margin: 0 200px;
+          background: pink;
+        }
+    
+        .left {
+          float: left;
+          width: 200px;
+          height: 500px;
+          margin-left: -100%;
+          background: yellow;
+        }
+    
+        .right {
+          float: left;
+          width: 200px;
+          height: 500px;
+          margin-left: -200px;
+          background: green;
+        }
+      </style>
     </head>
+    
     <body>
-        <!-- 双飞翼布局 -->
-        <div class="header">头头</div>
-    	<div class="content">
-    		<div class="middle">
-    			<div class="inner-middle">123</div>
-    		</div>
-    		<div class="left">456</div>
-    		<div class="right">789</div>
-    	</div>
-    	<div class="footer">尾尾</div>
+      <div class="header">头头</div>
+      <div class="content">
+        <div class="middle">
+          <div class="inner-middle">123</div>
+        </div>
+        <div class="left">456</div>
+        <div class="right">789</div>
+      </div>
+      <div class="footer">尾尾</div>
     </body>
+    
     </html>
     ```
 
-- flex
+- flex：左右贴边，不放大不缩小，给固定宽度，中间占据所有剩余空间
 
     ```html
     <!DOCTYPE html>
     <html lang="en">
+    
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>flex 实现左右固定，中间自适应布局</title>
-        <style>
-            .header {
-    			width: 100%;
-    			height: 100px;
-    			background: lightblue;
-    		}
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>flex 实现左右固定，中间自适应布局</title>
+      <style>
+        .header {
+          width: 100%;
+          height: 100px;
+          background: lightblue;
+        }
     
-    		.content {
-                display: flex;
-                /* 容器内的 item，两边贴边，中间平分空间 */
-                justify-content: space-between;
-    		}
+        .content {
+          display: flex;
+          /* 容器内的 item，两边贴边，中间平分空间 */
+          justify-content: space-between;
+        }
     
-    		.footer {
-    			width: 100%;
-    			height: 100px;
-    			background: lightblue;
-    		}
+        .footer {
+          width: 100%;
+          height: 100px;
+          background: lightblue;
+        }
     
-    		.left {
-                /* 不放大不缩小，固定该 item 主轴空间为 200px */
-                flex: 0 0 200px;
-    			height: 500px;
-    			background: yellow;
-    		}
-    		.middle {
-                /* 考虑到该容器中其他 item flex-grow 属性值都为 0，而这里为 1，所以该 item 会占据所有主轴剩余空间 */
-                flex: 1;
-    			height: 500px;
-    			background: pink;
-    		}
-    		.right {
-                flex: 0 0 200px;
-    			height: 500px;
-    			background: green;
-    		}
-        </style>
+        .left {
+          /* 不放大不缩小，固定该 item 主轴空间为 200px */
+          flex: 0 0 200px;
+          height: 500px;
+          background: yellow;
+        }
+    
+        .middle {
+          /* 考虑到该容器中其他 item flex-grow 属性值都为 0，而这里为 1，所以该 item 会占据所有主轴剩余空间 */
+          flex: 1;
+          height: 500px;
+          background: pink;
+        }
+    
+        .right {
+          flex: 0 0 200px;
+          height: 500px;
+          background: green;
+        }
+      </style>
     </head>
+    
     <body>
-        <div class="header">头头</div>
-        <div class="content">
-            <div class="left">456</div>
-    		<div class="middle">123</div>
-    		<div class="right">789</div>
-    	</div>
-    	<div class="footer">尾尾</div>
+      <div class="header">头头</div>
+      <div class="content">
+        <div class="left">456</div>
+        <div class="middle">123</div>
+        <div class="right">789</div>
+      </div>
+      <div class="footer">尾尾</div>
     </body>
+    
     </html>
     ```
 
-- 定位
+- 定位：子绝父相，左边贴左，右边贴右，中间给左右margin
 
     ```html
     <!DOCTYPE html>
     <html lang="en">
+    
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>定位实现左右固定，中间自适应布局</title>
-        <style>
-            .header {
-    			width: 100%;
-    			height: 100px;
-    			background: lightblue;
-    		}
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>定位实现左右固定，中间自适应布局</title>
+      <style>
+        .header {
+          width: 100%;
+          height: 100px;
+          background: lightblue;
+        }
     
-    		.content {
-                position: relative;
-    		}
+        .content {
+          position: relative;
+        }
     
-    		.footer {
-    			width: 100%;
-    			height: 100px;
-    			background: lightblue;
-    		}
+        .footer {
+          width: 100%;
+          height: 100px;
+          background: lightblue;
+        }
     
-    		.left {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 200px;
-    			height: 500px;
-    			background: yellow;
-    		}
-    		.middle {
-                margin: 0 200px;
-    			height: 500px;
-    			background: pink;
-    		}
-            .right {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 200px;
-    			height: 500px;
-    			background: green;
-    		}
-        </style>
+        .left {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 200px;
+          height: 500px;
+          background: yellow;
+        }
+    
+        .middle {
+          margin: 0 200px;
+          height: 500px;
+          background: pink;
+        }
+    
+        .right {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 200px;
+          height: 500px;
+          background: green;
+        }
+      </style>
     </head>
+    
     <body>
-        <div class="header">头头</div>
-        <div class="content">
-            <div class="left">456</div>
-    		<div class="middle">123</div>
-    		<div class="right">789</div>
-    	</div>
-    	<div class="footer">尾尾</div>
+      <div class="header">头头</div>
+      <div class="content">
+        <div class="left">456</div>
+        <div class="middle">123</div>
+        <div class="right">789</div>
+      </div>
+  <div class="footer">尾尾</div>
     </body>
+    
     </html>
-    ```
-
+  ```
+  
     
 
 ---
@@ -780,14 +831,14 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
 #### 3.1 构造函数实例和原型对象三角关系
 
 - 构造函数的 prototype 属性指向了构造函数原型对象
-- 实例对象是由构造函数创建的,实例对象的 \__proto__ 属性指向了构造函数的原型对象
-- 构造函数的原型对象的 constructor 属性指向了构造函数,实例对象的原型的 constructor 属性也指向了构造函数
+- 实例对象是由构造函数创建的，实例对象的 `__proto__` 属性指向了构造函数的原型对象
+- 构造函数的原型对象的 `constructor` 属性指向了构造函数，实例对象的原型的 `constructor` 属性也指向了构造函数
 
 ![img4](https://gitee.com/wlogan/pic-go-picture-bed/raw/master/images/20200907140552.png)
 
 #### 3.2 原型链
 
-每一个实例对象又有一个 \_\_proto\_\_ 属性，指向的构造函数的原型对象，构造函数的原型对象也是一个对象，也有 \__proto__ 属性，这样一层一层往上找就形成了原型链。
+每一个实例对象又有一个 `__proto__` 属性，指向的构造函数的原型对象，构造函数的原型对象也是一个对象，也有 `__proto__` 属性，这样一层一层往上找就形成了原型链。
 
 ![img5](https://gitee.com/wlogan/pic-go-picture-bed/raw/master/images/20200907140602.png)
 
@@ -802,30 +853,26 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
     var newArr = [...new Set(arr)]
     ```
 
-    
-
 2. 自己封装函数实现
 
     思路：定义一个新对象和新数组，将传入数组中的每个元素都作为新对象的 key，将其 value 改为 true（表示数组中有该元素），同时将该元素 push 到新数组，这样遍历完传进来的数组，新数组中便能得到去重的数组
 
     ```javascript
     function uniqueArray(arr) {
-    	if (!arr instanceof Array) {
-            throw Error('当前传入的不是数组')
+      if (!arr instanceof Array) {
+        throw Error('当前传入的不是数组')
+      }
+      let newArr = []
+      let obj = {}
+      arr.forEach(item => {
+        if (!obj[item]) {
+          newArr.push(item)
+          obj[item] = true
         }
-        let newArr []
-        let obj = {}
-        arr.forEach(item => {
-            if (!obj[item]) {
-                newArr.push(item)
-                obj[item] = true
-            }
-        })
-        return newArr
+      })
+      return newArr
     }
     ```
-
-
 
 #### 3.4 请介绍一下 this
 
@@ -846,34 +893,34 @@ BFC(Block formatting context)直译为"块级格式化上下文"。BFC 可以看
 
     ```javascript
 var o = {
-    	name: 'andy'
+      name: 'andy'
     }
     function fn(a, b) {
-    	console.log(this)
-        console.log(a + b)
-    };
-    fn(1,2)			// 此时的 this 指向的是 window，运行结果为3
-    fn.call(o,1,2)	// 此时的 this 指向的是对象 o,参数使用逗号隔开,运行结果为3
+      console.log(this)
+      console.log(a + b)
+    }
+    fn(1, 2) // 此时的 this 指向的是 window，运行结果为3
+    fn.call(o, 1, 2) // 此时的 this 指向的是对象 o,参数使用逗号隔开,运行结果为3
     ```
     
     **应用场景:**  经常做继承
 
     ```javascript
- // 1. 父构造函数
-     function Father(uname, age) {
-       // this 指向父构造函数的对象实例
-       this.uname = uname;
-       this.age = age;
-     }
-    // 2 .子构造函数 
+// 1. 父构造函数
+    function Father(uname, age) {
+      // this 指向父构造函数的对象实例
+      this.uname = uname
+      this.age = age
+    }
+    // 2 .子构造函数
     function Son(uname, age, score) {
       // this 指向子构造函数的对象实例
       // 3.使用 call 方式实现子继承父的属性
-      Father.call(this, uname, age);
-      this.score = score;
+      Father.call(this, uname, age)
+      this.score = score
     }
-    var son = new Son('刘德华', 18, 100);
-    console.log(son);
+    var son = new Son('刘德华', 18, 100)
+    console.log(son)
     ```
     
 2. **apply 方法**
@@ -882,17 +929,17 @@ var o = {
 
     ```javascript
     var o = {
-    	name: 'andy'
+      name: 'andy'
     }
     function fn(a, b) {
-     	console.log(this)
-        console.log(a + b)
-    };
-    fn()				// 此时的 this 指向的是 window，运行结果为3
-    fn.apply(o,[1,2])	// 此时的 this 指向的是对象 o,参数使用数组传递，运行结果为3
+      console.log(this)
+      console.log(a + b)
+    }
+    fn() // 此时的 this 指向的是 window，运行结果为3
+    fn.apply(o, [1, 2]) // 此时的 this 指向的是对象 o,参数使用数组传递，运行结果为3
     ```
 
-    应用场景:  经常跟数组有关系，比如利用 Math.max 求数组元素的最大值（数组中没有直接求最大值的方法）
+    应用场景:  经常跟数组有关系，比如利用 Math.max() 求数组元素的最大值（数组中没有直接求最大值的方法）
 
     ```javascript
     var arr = [1, 66, 3, 99, 4]
@@ -909,15 +956,15 @@ var o = {
 
     ```javascript
     var o = {
-     	name: 'andy'
-    };
+      name: 'andy'
+    }
     
     function fn(a, b) {
-    	console.log(this);
-    	console.log(a + b);
-    };
-    var f = fn.bind(o, 1, 2); 	// 此处的 f 是 bind 返回的新函数
-    f();						// 调用新函数 this 指向的是对象 o，参数使用逗号隔开
+      console.log(this)
+      console.log(a + b)
+    }
+    var f = fn.bind(o, 1, 2) // 此处的 f 是 bind 返回的新函数
+    f() // 调用新函数 this 指向的是对象 o，参数使用逗号隔开
     ```
 
     应用场景：不调用函数，但是还想改变 this 指向
@@ -925,11 +972,14 @@ var o = {
     ```javascript
     // 有一个按钮，当我们点击了之后，就禁用该按钮，三秒之后再自动激活
     var btn = document.querySelector('button')
-    btn.onclick = function() {
-        this.disabled = true
-        setTimeout(function() {
-            this.disabled = false	// 此时 this 指向 btn
-        }.bind(this), 3000)
+    btn.onclick = function () {
+      this.disabled = true
+      setTimeout(
+        function () {
+          this.disabled = false // 此时 this 指向 btn
+        }.bind(this),
+        3000
+      )
     }
     ```
 
@@ -950,16 +1000,16 @@ call、apply、bind三者的异同
 实例一：
 
 ```javascript
-function foo() { 
-    console.log(this.bar); 
-} 
-var bar = "bar1"; 
-var o2 = {bar: "bar2", foo: foo}; 
-var o3 = {bar: "bar3", foo: foo}; 
+function foo() {
+  console.log(this.bar)
+}
+var bar = 'bar1'
+var o2 = { bar: 'bar2', foo: foo }
+var o3 = { bar: 'bar3', foo: foo }
 
-foo();			// 预期输出 "bar1" - 默认绑定
-o2.foo();       // 预期输出 "bar2" - 隐式绑定
-foo.call(o3);	// 预期输出 "bar3" - 显示绑定，使用对象作为 this
+foo() // 预期输出 "bar1" - 默认绑定
+o2.foo() // 预期输出 "bar2" - 隐式绑定
+foo.call(o3) // 预期输出 "bar3" - 显示绑定，使用对象作为 this
 ```
 
 **解析：**通过 call、apply、bind 调用的函数，都是显示绑定
@@ -967,18 +1017,18 @@ foo.call(o3);	// 预期输出 "bar3" - 显示绑定，使用对象作为 this
 实例二：
 
 ```javascript
-var name = 'Nicolas';
+var name = 'Nicolas'
 function Person() {
-    this.name = 'Smiley';
-    this.sayName = function() {
-        console.log(this); 
-        console.log(this.name); 
-    };
-    setTimeout(this.sayName, 0);     // 预期输出 window，Nicolas
+  this.name = 'Smiley'
+  this.sayName = function () {
+    console.log(this)
+    console.log(this.name)
+  }
+  setTimeout(this.sayName, 0) // 预期输出 window，Nicolas
 }
 
-var person = new Person();	// 关键字 new 绑定
-person.sayName();			// 预期输出 Person，Smiley
+var person = new Person() // 关键字 new 绑定
+person.sayName() // 预期输出 Person，Smiley
 ```
 
 **解析：**如果在函数调用前面加上 new，那么这个函数中的 this 就是这个新的对象。
@@ -987,15 +1037,15 @@ person.sayName();			// 预期输出 Person，Smiley
 
 ```javascript
 function Person() {
-  	this.name = "Smiley";
-  	this.sayName = function() {
-    	console.log(this);
-    	console.log(this.name); 
-  	};
+  this.name = 'Smiley'
+  this.sayName = function () {
+    console.log(this)
+    console.log(this.name)
+  }
 }
 
-let person = new Person();
-person.sayName.call({name: "Nicolas"});		// 预期输出 {name: "Nicolas"}，"Nicolas"
+let person = new Person()
+person.sayName.call({ name: 'Nicolas' }) // 预期输出 {name: "Nicolas"}，"Nicolas"
 ```
 
 **解析：**显示绑定，其 this 指向 call 中第一个参数，也即是对象 {name: "Nicolas"}
@@ -1004,16 +1054,16 @@ person.sayName.call({name: "Nicolas"});		// 预期输出 {name: "Nicolas"}，"Ni
 
 ```javascript
 function Person() {
-  	this.name = "Smiley";
-  	this.sayName = function() {
-    	console.log(this);
-    	console.log(this.name); 
-  	};
+  this.name = 'Smiley'
+  this.sayName = function () {
+    console.log(this)
+    console.log(this.name)
+  }
 }
 
-let person = new Person();
-let sayNameCopy = person.sayName;
-sayNameCopy();	// 预期输出 window，undefined
+let person = new Person()
+let sayNameCopy = person.sayName
+sayNameCopy() // 预期输出 window，undefined
 ```
 
 **解析：**符合默认绑定的规则
@@ -1022,15 +1072,15 @@ sayNameCopy();	// 预期输出 window，undefined
 
 ```javascript
 function Person() {
-  	this.name = "Smiley";
-  	this.sayName = ()=> {
-    	console.log(this);
-    	console.log(this.name); 
-  	};
+  this.name = 'Smiley'
+  this.sayName = () => {
+    console.log(this)
+    console.log(this.name)
+  }
 }
 
-let person = new Person();
-person.sayName.call({name: "Nicolas"});		// 预期输出 Person，"Smiley"
+let person = new Person()
+person.sayName.call({ name: 'Nicolas' }) // 预期输出 Person，"Smiley"
 ```
 
 **解析：**箭头函数并没有自己的 this，被定义在哪里，this 就指向谁，且优先级比显式调用高，因此，this 指向Person
@@ -1039,19 +1089,19 @@ person.sayName.call({name: "Nicolas"});		// 预期输出 Person，"Smiley"
 
 ```javascript
 function deepCopy(newObj, oldObj) {
-    for (var k in oldObj) {
-        var item = oldObj[k]
-        // 判断属性值属于哪种类型
-        if (item instanceof Array) {
-            newObj[k] = []
-            deepCopy(newObj[k], item)
-        } else if (item instanceof Object) {
-            newObj[k] = {}
-            deepCopy(newObj[k], item)
-        } else {
-            newObj[k] = item
-        }
+  for (var k in oldObj) {
+    var item = oldObj[k]
+    // 判断属性值属于哪种类型
+    if (item instanceof Array) {
+      newObj[k] = []
+      deepCopy(newObj[k], item)
+    } else if (item instanceof Object) {
+      newObj[k] = {}
+      deepCopy(newObj[k], item)
+    } else {
+      newObj[k] = item
     }
+  }
 }
 ```
 
@@ -1059,42 +1109,97 @@ function deepCopy(newObj, oldObj) {
 
 在JavaScript中，除了5种原始数据类型之外，其他所有的都是对象，包括函数（Function）。
 
-**基本数据类型：**String，Boolean，Number，Undefined，Null，BigInt，Symbol
+**基本数据类型：**String，Boolean，Number，Undefined，Null，BigInt(ES10)，Symbol(ES6)
 
 **引用数据类型：**Object（Array，Date，RegExp，Function）
 
-#### 3.7 js 实现继承的方式
+#### 3.7 typeof 和 instanceof 
+
+- **typeof**：typeof 操作符返回一个字符串，表示未经计算的操作数的类型。
+
+  可能的返回值有这8个：
+
+  - "string"
+  - "boolean"
+  - "number"
+  - "undefined"
+  - "bigint"
+  - "symbol"
+  - "object"
+  - "function"
+
+  **注意**：`typeof null` 返回 `"object"`。
+
+- **instanceof** ：`instanceof` 运算符用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。
+
+  语法：
+
+  ```js
+  object instanceof constructor
+  object 某个实例对象
+  construtor 某个构造函数
+  ```
+
+  也即是说 `object` 的原型链上有 `construtor` 的原型对象，就返回 true。看几个例子：
+
+  ```js
+  // 定义构造函数
+  function C() {}
+  function D() {}
+  
+  var o = new C()
+  
+  o instanceof C // true，因为 Object.getPrototypeOf(o) === C.prototype
+  o instanceof D // false，因为 D.prototype 不在 o 的原型链上
+  o instanceof Object // true，因为 Object.prototype.isPrototypeOf(o) 返回 true
+  C.prototype instanceof Object // true，同上
+  
+  C.prototype = {}
+  var o2 = new C()
+  
+  o2 instanceof C // true
+  o instanceof C // false，C.prototype 指向了一个空对象，这个空对象不在 o 的原型链上.
+  
+  D.prototype = new C() // 继承
+  var o3 = new D()
+  o3 instanceof D // true
+  o3 instanceof C // true 因为 C.prototype 现在在 o3 的原型链上
+  ```
+
+  需要注意的是，如果表达式 `obj instanceof Foo` 返回 `true`，则并不意味着该表达式会永远返回 `true`，因为 `Foo.prototype` 属性的值有可能会改变，改变之后的值很有可能不存在于 `obj` 的原型链上，这时原表达式的值就会成为 `false`。另外一种情况下，原表达式的值也会改变，就是改变对象 `obj` 的原型链的情况，虽然在目前的ES规范中，我们只能读取对象的原型而不能改变它，但借助于非标准的 `__proto__` 伪属性，是可以实现的。比如执行 `obj.__proto__ = {}` 之后，`obj instanceof Foo` 就会返回 `false` 了。
+
+#### 3.8 js 实现继承的方式
 
 常见的共有 5 种，如下：
 
-- 类式继承
+- 类式继承：继承父类方法
 
     ```javascript
     // 声明父类
     function Animal() {
-      	this.name = 'animal';
-      	this.type = ['pig', 'cat'];
+      this.name = 'animal'
+      this.type = ['pig', 'cat']
     }
     
     // 为父类添加共有方法
-    Animal.prototype.greet = function(sound) {
-      	console.log(sound);
+    Animal.prototype.greet = function (sound) {
+      console.log(sound)
     }
     
     // 声明子类
     function Dog() {
-      	this.name = 'dog';
+      this.name = 'dog'
     }
     
     // 继承父类
-    Dog.prototype = new Animal();
+    Dog.prototype = new Animal()
     
-    var dog = new Dog();
-    dog.greet('汪汪');		//  "汪汪"
-    console.log(dog.type);	// ["pig", "cat"]
+    var dog = new Dog()
+    dog.greet('汪汪') // "汪汪"
+    console.log(dog.type) // ["pig", "cat"]
     ```
 
-    **原理：**在实例化一个类时，新创建的对象复制了父类的构造函数内的属性与方法并且将原型 _proto__ 指向了父类的原型对象，这样就拥有了父类的原型对象上的属性与方法。
+    **原理：**在实例化一个类时，新创建的对象复制了父类的构造函数内的属性与方法并且将原型 `__proto__` 指向了父类的原型对象，这样就拥有了父类的原型对象上的属性与方法。
 
     缺点：
 
@@ -1106,50 +1211,50 @@ function deepCopy(newObj, oldObj) {
         console.log(dog2.type);  // ["dog", "cat", "dog"]
         ```
 
-        当通过 dog 实例对象修改继承自 Animal 中的数组 type (引用类型)时，另外一个新创建的实例 dog2 也会受到影响。
+        当通过 dog 实例对象修改继承自 Animal 中的数组 type (引用类型)时，另外一个新创建的实例 dog2 也会受到影响。Why?
 
     - 无法为不同的实例初始化继承来的属性（子类型创建时不能向父类型传递参数？）：
 
         ```javascript
         function Animal(color) {
-          	this.color = color;
+          this.color = color
         }
-        ...
-        Dog.prototype = new Animal('白色');
-        ...
-        console.log(dog.color); // "白色"
-        console.log(do2.color); // "白色"
+        // ...
+        Dog.prototype = new Animal('白色')
+        // ...
+        console.log(dog.color) // "白色"
+        console.log(do2.color) // "白色"
         ```
     
-- 构造函数继承
+- 构造函数继承：继承实例属性
 
     ```javascript
     // 声明父类
     function Animal(color) {
-      	this.name = 'animal';
-      	this.type = ['pig','cat'];
-      	this.color = color;
+      this.name = 'animal'
+      this.type = ['pig', 'cat']
+      this.color = color
     }
     
     // 添加共有方法
-    Animal.prototype.greet = function(sound) {
-      	console.log(sound);
+    Animal.prototype.greet = function (sound) {
+      console.log(sound)
     }
     
     // 声明子类
     function Dog(color) {
-      	Animal.call(this, color);	// 改变 Animal 父类 this 指向子类
+      Animal.call(this, color) // 改变 Animal 父类 this 指向子类
     }
     
-    var dog = new Dog('白色');
-    var dog2 = new Dog('黑色');
+    var dog = new Dog('白色')
+    var dog2 = new Dog('黑色')
     
-    dog.type.push('dog');
-    console.log(dog.color);  	// "白色"
-    console.log(dog.type);  	// ["pig", "cat", "dog"]
+    dog.type.push('dog')
+    console.log(dog.color) // "白色"
+    console.log(dog.type) // ["pig", "cat", "dog"]
     
-    console.log(dog2.type);  	// ["pig", "cat"]
-    console.log(dog2.color);  	// "黑色"
+    console.log(dog2.type) // ["pig", "cat"]
+    console.log(dog2.color) // "黑色"
     ```
 
     缺点：
@@ -1157,43 +1262,43 @@ function deepCopy(newObj, oldObj) {
     - 无法获取到父类的共有方法，也就是通过原型 prototype 绑定的方法：
 
         ```javascript
-        dog.greet();  // Uncaught TypeError: dog.greet is not a function
+        dog.greet() // Uncaught TypeError: dog.greet is not a function
         ```
 
-- 组合继承
+- 组合继承：继承**父类方法**和**实例属性**
 
     ```javascript
-    // 声明父类   
-    function Animal(color) {    
-        this.name = 'animal';    
-        this.type = ['pig','cat'];    
-        this.color = color;   
-    }     
+    // 声明父类
+    function Animal(color) {
+      this.name = 'animal'
+      this.type = ['pig', 'cat']
+      this.color = color
+    }
     
-    // 添加共有方法  
-    Animal.prototype.greet = function(sound) {    
-      	console.log(sound);   
-    }     
+    // 添加共有方法
+    Animal.prototype.greet = function (sound) {
+      console.log(sound)
+    }
     
-    // 声明子类   
-    function Dog(color) { 
-        // 构造函数继承    
-        Animal.call(this, color);   // 继承实例属性，第一次调用 Animal()
-    }   
+    // 声明子类
+    function Dog(color) {
+      // 构造函数继承
+      Animal.call(this, color) // 继承实例属性，第一次调用 Animal()
+    }
     
     // 类式继承
-    Dog.prototype = new Animal();   	// 继承父类方法，第二次调用 Animal()
+    Dog.prototype = new Animal() // 继承父类方法，第二次调用 Animal()
     
-    var dog = new Dog('白色');   
-    var dog2 = new Dog('黑色');     
+    var dog = new Dog('白色')
+    var dog2 = new Dog('黑色')
     
-    dog.type.push('dog');   
-    console.log(dog.color); // "白色"
-    console.log(dog.type);  // ["pig", "cat", "dog"]
+    dog.type.push('dog')
+    console.log(dog.color) // "白色"
+    console.log(dog.type) // ["pig", "cat", "dog"]
     
-    console.log(dog2.type); // ["pig", "cat"]
-    console.log(dog2.color);  // "黑色"
-    dog.greet('汪汪');  // "汪汪"
+    console.log(dog2.type) // ["pig", "cat"]
+    console.log(dog2.color) // "黑色"
+    dog.greet('汪汪') // "汪汪"
     ```
 
     组合继承综合了类式继承和构造函数继承的优点，同时去除了缺陷。
@@ -1204,119 +1309,164 @@ function deepCopy(newObj, oldObj) {
 
     ```javascript
     function Animal(color) {
-        this.color = color;
-        this.name = 'animal';
-        this.type = ['pig', 'cat'];
+      this.color = color
+      this.name = 'animal'
+      this.type = ['pig', 'cat']
     }
     
-    Animal.prototype.greet = function(sound) {
-      	console.log(sound);
+    Animal.prototype.greet = function (sound) {
+      console.log(sound)
     }
     
     function Dog(color) {
-        Animal.call(this, color);
-        this.name = 'dog';
+      Animal.call(this, color)
+      this.name = 'dog'
     }
     
     /* 注意下面两行 */
-    Dog.prototype = Object.create(Animal.prototype);
-    Dog.prototype.constructor = Dog;
+    Dog.prototype = Object.create(Animal.prototype)
+    Dog.prototype.constructor = Dog
     
-    Dog.prototype.getName = function() {
-      	console.log(this.name);
+    Dog.prototype.getName = function () {
+      console.log(this.name)
     }
     
-    var dog = new Dog('白色');   
-    var dog2 = new Dog('黑色');     
+    var dog = new Dog('白色')
+    var dog2 = new Dog('黑色')
     
-    dog.type.push('dog');   
-    console.log(dog.color);   	// "白色"
-    console.log(dog.type);   	// ["pig", "cat", "dog"]
+    dog.type.push('dog')
+    console.log(dog.color) // "白色"
+    console.log(dog.type) // ["pig", "cat", "dog"]
     
-    console.log(dog2.type);  	// ["pig", "cat"]
-    console.log(dog2.color);  	// "黑色"
-    dog.greet('汪汪');		   // "汪汪"
+    console.log(dog2.type) // ["pig", "cat"]
+    console.log(dog2.color) // "黑色"
+    dog.greet('汪汪') // "汪汪"
     ```
 
-    在上面的例子中，我们并不像构造函数继承一样直接将父类 Animal 的一个实例赋值给 Dog.prototype，而是使用 Object.create( ) 进行一次浅拷贝，将父类原型上的方法拷贝后赋给 Dog.prototype，这样子类上就能拥有了父类的共有方法，而且少了一次调用父类的构造函数。
+    在上面的例子中，我们并不像构造函数继承一样直接将父类 Animal 的一个实例赋值给 `Dog.prototype`，而是使用 `Object.create()` 进行一次浅拷贝，将父类原型上的方法拷贝后赋给 `Dog.prototype`，这样子类上就能拥有了父类的共有方法，而且少了一次调用父类的构造函数。
 
-    这里还需注意一点，由于对Animal的原型进行了拷贝后赋给 Dog.prototype，因此 Dog.prototype 上的constructor 属性也被重写了，所以我们通过 Dog.prototype.constructor = Dog 修复。
+    这里还需注意一点，由于对 Animal 的原型进行了拷贝后赋给 `Dog.prototype`，因此 `Dog.prototype` 上的 constructor 属性也被重写了，所以我们通过 `Dog.prototype.constructor = Dog` 修复。
 
 - extends 继承
 
     Class 和 extends 是在 ES6 中新增的，Class 用来创建一个类，extends 用来实现继承：
 
     ```javascript
-    class Animal {   
-        constructor(color) {   
-            this.color = color;   
-        }   
-        greet(sound) {   
-            console.log(sound);   
-        }  
-    }   
+    class Animal {
+      constructor(color) {
+        this.color = color
+      }
+      greet(sound) {
+        console.log(sound)
+      }
+    }
     
-    class Dog extends Animal {   
-        constructor(color) {   
-            super(color);   
-            this.color = color;   
-        }  
-    }   
+    class Dog extends Animal {
+      constructor(color) {
+        super(color)
+        this.color = color
+      }
+    }
     
-    let dog = new Dog('黑色');  
-    dog.greet('汪汪');		// "汪汪"
-    console.log(dog.color);	// "黑色"
+    let dog = new Dog('黑色')
+    dog.greet('汪汪') // "汪汪"
+    console.log(dog.color) // "黑色"
     ```
 
-#### 3.8 为什么 0.1 + 0.2 !== 0.3 ？如何解决？
+#### 3.9 为什么 0.1 + 0.2 !== 0.3 ？如何解决？
 
 0.1 + 0.2 = 0.30000000000000004
 
-> 在 JS 中的 Number 类型，二进制小数的有效位数只有 52 位，从 0到 51 位（包括边界）
+在 JS 中的 Number 类型，二进制小数的有效位数只有 52 位，从 0到 51 位（包括边界）
 
-#### 3.9 onchange、oninput 和 onpropertychange的区别
+#### 3.10 onchange、oninput 和 onpropertychange 的区别
 
-- onpropertychange IE 专属；
-- oninput 兼容 IE9 及以上；
-- oninput 和 onpropertychange 实时触发，onchange 在元素失去焦点时触发；
+- onpropertychange：IE 专属；
+- oninput：兼容 IE9 及以上；
+- oninput 和 onpropertychange：实时触发，onchange 在元素失去焦点时触发；
 - 通过 js 改变 value 不会触发 oninput，但 onpropertychange 会。
 
-#### 3.10 new 出构造函数会执行哪些操作
+#### 3.11 new 出构造函数会执行哪些操作
 
 1. 在内存中创建一个新对象；
-2. 新对象内部的 [[Prototype]] 特性被赋值为构造函数的 prototype 属性；
+2. 新对象内部的 `[[Prototype]]` 特性被赋值为构造函数的 prototype 属性；
 3. this 指向新对象；
 4. 给新对象添加属性；
 5. 返回刚创建的新对象。
 
-#### 3.11 比较运算
+#### 3.12 比较运算
 
 ##### == 数据类型不一样时
 
-- 对象 == 字符串，对象.toString() 变为字符串
-- null == undefined，但是和其他值比较就不再相等了
+- 对象 == 字符串，`对象.toString()` 变为字符串
+- null == undefined，相等，但是和其他值比较就不再相等了
 - NaN == NaN，不相等，和其他值比较更不可能相等
 - 剩下的都是转换为数字
 
-#### 3.12 说一说 js 的执行机制
+#### 3.13 说一说 js 的执行机制
 
-有关 js 的执行机制，参考[这篇文章](https://juejin.im/post/6844904050543034376)，讲的炒鸡详细，包括浏览器的进程、事件循环（Event Loop）、宏任务微任务等。
+有关 js 的执行机制，参考[这篇文章](https://juejin.im/post/6844904050543034376)，讲的炒鸡详细，包括浏览器的进程、事件循环（Event Loop）、宏任务微任务等。简单梳理：
+
+浏览器中进程与线程：
+
+- Browser 进程：浏览器主线程，只有一个；
+
+- 第三方插件进程：每种类型的插件对应一个进程，当使用该插件时才创建；
+
+- GPU 进程：只有一个，用于 3D 绘制等；
+
+- 渲染进程(重要)：也即是浏览器内核，每个Tab 都有一个，互不影响，内部是多线程，主要用于页面渲染，脚本执行，事件处理等。主要线程如下：
+
+  - GUI 渲染线程：负责渲染浏览器界面，解析HTML，CSS，构建 DOM 树和 RenderObject 树，布局和绘制等；
+- JS 引擎线程：JS 内核，负责处理 Javascript 脚本程序(例如V8引擎)；
+  - 事件触发线程：用来控制事件循环，并且管理着一个事件队列；
+  - 定时触发器线程：`setInterval` 与`setTimeout`所在线程；
+  - 异步 HTTP 请求线程
+
+常见的宏任务（macrotask）：
+
+- 主代码块
+- setTimeout
+- setInterval
+- setImmediate() - Node.js
+- requestAnimationFrame() - 浏览器
+
+常见的微任务（microtask）：
+
+- Promise.then()
+- catch
+- finally
+- Object.observe
+- MutationObserver
+- process.nextTick() - Node.js
+
+大概执行流程：
+
+1. 首先执行一个宏任务，执行结束后判断是否存在微任务
+2. 有微任务先执行**所有的微任务**，再渲染，没有微任务则直接渲染
+3. 然后再接着执行下一个宏任务
+
+完整 Event Loop：
+
+![img](https://logan-typora-img.oss-cn-guangzhou.aliyuncs.com/img/20210331234222.png)
 
 ---
 
 ### 4 ES6 新特性
 
+参考阮一峰老师的[ES6入门教程](https://es6.ruanyifeng.com/)
+
 #### 4.1 let 关键字
 
 ```javascript
-var arr = [];
- for (var i = 0; i < 2; i++) {
-     arr[i] = function () {
-         console.log(i); 
-     }
- }
- arr[0]();	// 预期输出 2
- arr[1]();	// 预期输出 2
+var arr = []
+for (var i = 0; i < 2; i++) {
+  arr[i] = function () {
+    console.log(i)
+  }
+}
+arr[0]() // 预期输出 2
+arr[1]() // 预期输出 2
 ```
 
 图解：关键点在于变量 i 是全局的，函数执行时输出的都是全局作用域下的 i 值
@@ -1324,14 +1474,14 @@ var arr = [];
 ![let面试题](https://gitee.com/wlogan/pic-go-picture-bed/raw/master/images/20200907140614.png)
 
 ```javascript
- let arr = [];
+ let arr = []
  for (let i = 0; i < 2; i++) {
-     arr[i] = function () {
-         console.log(i); 
-     }
+   arr[i] = function () {
+     console.log(i)
+   }
  }
- arr[0]();	// 预期输出 0
- arr[1]();	// 预期输出 1
+ arr[0]()	// 预期输出 0
+ arr[1]()	// 预期输出 1
 ```
 
 图解：关键点在于每次循环都会产生一个块级作用域，每个块级作用域中的变量都是不同的，函数执行时输出的是自己上一级（循环产生的块级作用域）作用域下的 i 值
@@ -1352,11 +1502,42 @@ var arr = [];
 
     const，顾名思义：常量，const 的引用不应被改变。如果编译器把 const 初始化为 undefined，之后，又让它等于我们定义的那个值，就改变了 const 的引用。因此，委员会决定 let 和 const 虽然也会发生变量提升，但是没有任何初始值。
 
-2. 块级作用域
+2. 暂时性死区
+
+    只要块级作用域内存在`let`命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
+
+    ```js
+    var tmp = 123
+    
+    if (true) {
+      tmp = 'abc' // ReferenceError
+      let tmp
+    }
+    ```
+
+3. 不允许重复声明
+
+    `let`不允许在相同作用域内，重复声明同一个变量。
+
+    ```js
+    // 报错
+    function func() {
+      let a = 10
+      var a = 1
+    }
+    
+    // 报错
+    function func() {
+      let a = 10
+      let a = 1
+    }
+    ```
+
+4. 块级作用域
 
     var、let 和 const 另外一个重要区别就是 let 和 const 只在块级作用域中有效
 
-3. 循环中 i 的定义
+5. 循环中 i 的定义
 
 ---
 
